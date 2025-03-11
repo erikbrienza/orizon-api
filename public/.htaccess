@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Imposta il documento principale su index.php
+DirectoryIndex index.php
+
+# Reindirizza tutte le richieste a index.php se il file o la directory non esistono
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+
+# Abilita CORS (se l'API viene usata da un frontend separato)
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
